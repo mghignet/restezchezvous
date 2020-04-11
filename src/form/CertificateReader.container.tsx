@@ -15,7 +15,7 @@ export const CertificateReaderContainer: React.FC<Props> = ({user, reason}) => {
   React.useEffect(() => {
     async function generateCertificate() {
       const generatedCertificate = await generateCertificateAsBase64(user, reason);
-      setCertificate({uri: `data:application/pdf;base64,${generatedCertificate}`});
+      setCertificate({uri: generatedCertificate});
     }
     generateCertificate();
   }, []);

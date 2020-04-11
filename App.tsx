@@ -14,7 +14,6 @@ export interface User {
 
 export interface Reason {
   reasons: string[];
-  
 }
 
 export default function App() {
