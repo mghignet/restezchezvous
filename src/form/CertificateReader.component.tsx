@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {generateCertificateAsBase64} from './certificate-service';
-import {User} from '../model/user';
-import {CertificateReason} from '../model/certificate-reason';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
 import Pdf from 'react-native-pdf';
+import { Certificate } from "../model/certificate";
 
 interface Props {
-  user: User;
-  reason: CertificateReason;
+  certificate: Certificate;
 }
 
 type RootStackParamList = {Props: Props};
@@ -20,16 +18,13 @@ type NavigationProps = {
 };
 
 export function CertificateReader({route}: NavigationProps) {
-  const {user, reason}: Props = route.params;
-  const [certificate, setCertificate] = React.useState();
+  const {certificate}: Props = route.params;
+  const [pdfCertificate, setPdfCertificate] = useState<string>();
 
   React.useEffect(() => {
     async function generateCertificate() {
-      const generatedCertificate = await generateCertificateAsBase64(
-        user,
-        reason,
-      );
-      setCertificate({uri: generatedCertificate});
+      const generatedCertificate = await generateCertificateAsBase64(certificate);
+      setPdfCertificate(generatedCertificate);
     }
 
     generateCertificate();
@@ -37,7 +32,7 @@ export function CertificateReader({route}: NavigationProps) {
 
   return (
     <View style={styles.container}>
-      {certificate && <Pdf source={certificate} style={styles.pdf} />}
+      {certificate && <Pdf source={{uri:pdfCertificate}} style={styles.pdf} />}
     </View>
   );
 }

@@ -1,19 +1,18 @@
-import { CertificateData } from "./certificate-service";
+import { Certificate } from "../model/certificate";
+import { formatDateAndTime } from "../services/date-service";
 
 const qrImage = require("qr-image");
 
-export async function generateQrCode(certificateData: CertificateData) {
-  const { user, reason, creationDate } = certificateData;
+export async function generateQrCode(certificate: Certificate) {
   const qrText = [
-    `Cree le ${creationDate}`,
-    `Nom: ${user.lastName}`,
-    `Prenom: ${user.firstName}`,
-    `Naissance: ${user.birthDate} a ${user.birthLocation}`,
-    `Adresse: ${user.address} ${user.zipCode} ${user.town}`,
-    `Sortie: ${reason.releaseDate} a ${reason.releaseHours}h${reason.releaseMinutes}`,
-    `Motifs: ${reason.reasons.join("-")}`,
+    `Cree le ${certificate.creationDate}`,
+    `Nom: ${certificate.lastName}`,
+    `Prenom: ${certificate.firstName}`,
+    `Naissance: ${certificate.birthDate} a ${certificate.birthLocation}`,
+    `Adresse: ${certificate.address} ${certificate.zipCode} ${certificate.town}`,
+    `Sortie: ${formatDateAndTime(certificate.releaseDate)}`,
+    `Motifs: ${certificate.reasons.join("-")}`,
   ].join("; ");
-  console.log(qrText);
   const qrOptions = {
     ec_level: 'M',
     type: 'png',
