@@ -3,7 +3,12 @@ import { generateQrCode } from "./qrcode.service";
 import { formatDateAndTime, formatDateOnly, formatHoursOnly, formatMinutesOnly } from "./date.service";
 import { ReleaseReasons } from "../models/release-reason";
 import { Certificate } from "../models/certificate";
-import { rawPdfCertificate } from '../assets/assets-base64';
+import rawPdfCertificate from '../assets/pdf-certificate.base64';
+import moment from "moment";
+
+export function isExpired(certificate: Certificate) {
+  return moment(certificate.releaseDate).isBefore(moment().subtract(60, 'm').toDate());
+}
 
 export async function generateCertificateAsBase64(certificate: Certificate) {
 

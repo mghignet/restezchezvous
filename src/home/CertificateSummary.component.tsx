@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   button: {
     marginTop: 20,

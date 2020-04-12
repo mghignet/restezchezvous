@@ -68,7 +68,8 @@ export function Home({navigation}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
+    padding: 0,
+    backgroundColor: '#EEE',
   },
   profileSummary: {
     padding: 20,
