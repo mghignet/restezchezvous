@@ -1,7 +1,7 @@
 import React from 'react';
-import {Certificate} from '../model/certificate';
+import {Certificate} from '../models/certificate';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {formatDateAndTime} from '../services/date-service';
+import {formatDateAndTime} from '../services/date.service';
 
 interface Props {
   certificate: Certificate;
@@ -19,7 +19,7 @@ export function CertificateListItem({
           {certificate.firstName} {certificate.lastName}
         </Text>
         <Text>Sortie le {formatDateAndTime(certificate.releaseDate)}</Text>
-        <Text>Motif(s): {certificate.reasons.join(', ')}</Text>
+        <Text>Motif(s): {certificate.releaseReasons.join(', ')}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,4 +1,4 @@
-import { User } from "../model/user";
+import { User } from "../models/user";
 import AsyncStorage from "@react-native-community/async-storage";
 
 export async function saveUser(user: User) {

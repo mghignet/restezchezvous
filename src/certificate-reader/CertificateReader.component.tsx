@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import {generateCertificateAsBase64} from './certificate-service';
+import {generateCertificateAsBase64} from '../services/certificate.service';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
 import Pdf from 'react-native-pdf';
-import { Certificate } from "../model/certificate";
+import { Certificate } from "../models/certificate";
 
 interface Props {
   certificate: Certificate;

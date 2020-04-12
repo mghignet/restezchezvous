@@ -5,8 +5,8 @@ import {
   Button,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {User} from '../model/user';
-import {getUser, saveUser} from './user-service';
+import {User} from '../models/user';
+import {getUser, saveUser} from '../repositories/user.repository';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
 import {ProfileTextInput} from './ProfileTextInput.component';
@@ -41,7 +41,7 @@ const dummyUser: User = {
   town: 'Lille',
 };
 
-export function Profile({route, navigation}: NavigationProps) {
+export function ProfileEditor({route, navigation}: NavigationProps) {
   const {onSave} = route.params;
   const [currentUser, setCurrentUser] = React.useState<User>(emptyUser);
 

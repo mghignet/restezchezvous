@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
-import {Certificate} from 'src/model/certificate';
+import {Certificate} from 'src/models/certificate';
 import {CertificateListItem} from './CertificateListItem.component';
 
 interface Props {
