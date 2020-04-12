@@ -3,7 +3,7 @@ import {User} from 'src/model/user';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
 interface Props {
-  user: User;
+  user?: User;
   onProfileEditAction: () => void;
 }
 

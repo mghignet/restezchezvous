@@ -1,13 +1,8 @@
 import React from 'react';
 import {
-  ScrollView,
-  KeyboardAvoidingView,
   StyleSheet,
   View,
   Button,
-  Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {User} from '../model/user';
@@ -67,7 +62,7 @@ export function Profile({route, navigation}: NavigationProps) {
     navigation.goBack();
   }
 
-  function updateUser(property: User) {
+  function updateUser(property: any) {
     setCurrentUser({...currentUser, ...property});
   }
 
