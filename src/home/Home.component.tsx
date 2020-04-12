@@ -1,11 +1,11 @@
 import React from 'react';
-import {ScrollView, Button, Text, StyleSheet, View} from 'react-native';
-import {getUser} from '../profile/user-service';
-import {User} from '../model/user';
+import {ScrollView, StyleSheet} from 'react-native';
+import {getUser} from '../repositories/user.repository';
+import {User} from '../models/user';
 import {CertificateSummary} from './CertificateSummary.component';
-import {Certificate} from '../model/certificate';
-import {getCertificates} from '../certificate-editor/certificate-service';
-import {ProfileSummary} from './ProfileSummay.component';
+import {Certificate} from '../models/certificate';
+import {getCertificates} from '../repositories/certificate.repository';
+import {ProfileSummary} from './ProfileSummary.component';
 
 interface Props {
   navigation: any;
@@ -45,7 +45,7 @@ export function Home({navigation}: Props) {
       <ProfileSummary
         user={currentUser}
         onProfileEditAction={() =>
-          navigation.navigate('Profile', {onSave: onProfileSave})
+          navigation.navigate('ProfileEditor', {onSave: onProfileSave})
         }
       />
       {currentUser && (

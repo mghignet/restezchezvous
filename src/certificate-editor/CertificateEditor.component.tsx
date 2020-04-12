@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {User} from '../model/user';
+import {User} from '../models/user';
 import {RouteProp} from '@react-navigation/native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
 import {Button, ScrollView} from 'react-native';
-import {Certificate} from '../model/certificate';
-import {saveCertificate} from './certificate-service';
-import {CertificateReason} from '../model/certificate-reason';
-import {ReleaseReason, ReleaseReasons} from '../model/release-reason';
-import {formatDateAndTime} from '../services/date-service';
+import {Certificate} from '../models/certificate';
+import {saveCertificate} from '../repositories/certificate.repository';
+import {CertificateReason} from '../models/certificate-reason';
+import {ReleaseReason, ReleaseReasons} from '../models/release-reason';
+import {formatDateAndTime} from '../services/date.service';
 import {ReleaseReasonToggle} from './ReleaseReasonToggle.component';
 
 interface Props {
@@ -24,7 +24,7 @@ type NavigationProps = {
 };
 
 const emptyReason: CertificateReason = {
-  reasons: [],
+  releaseReasons: [],
   releaseDate: new Date(),
 };
 
@@ -54,22 +54,22 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
   };
 
   function hasReason(reason: ReleaseReason) {
-    return certificateReason.reasons.includes(reason)
+    return certificateReason.releaseReasons.includes(reason)
   }
 
   function removeReason(reason: ReleaseReason) {
-    const newReasons = certificateReason.reasons.filter((r) => r != reason);
-    setCertificateReason({...emptyReason, reasons: newReasons});
+    const newReasons = certificateReason.releaseReasons.filter((r) => r != reason);
+    setCertificateReason({...emptyReason, releaseReasons: newReasons});
   }
 
   function addReason(reason: ReleaseReason) {
     // try to remove it first to prevent duplicates
-    const reasonsWithoutTheOnToAdd = certificateReason.reasons.filter(
+    const reasonsWithoutTheOnToAdd = certificateReason.releaseReasons.filter(
       (r) => r != reason,
     );
     setCertificateReason({
       ...emptyReason,
-      reasons: [...reasonsWithoutTheOnToAdd, reason],
+      releaseReasons: [...reasonsWithoutTheOnToAdd, reason],
     });
   }
 

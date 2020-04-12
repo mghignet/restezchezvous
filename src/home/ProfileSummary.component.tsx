@@ -1,5 +1,5 @@
 import React from 'react';
-import {User} from 'src/model/user';
+import {User} from 'src/models/user';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
 interface Props {

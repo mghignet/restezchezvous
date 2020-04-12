@@ -9,7 +9,7 @@ export interface Certificate {
   town: string;
 
   // Reason properties
-  reasons: string[];
+  releaseReasons: string[];
   releaseDate: Date;
 
   // Own properties

@@ -2,8 +2,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { Profile } from "./src/profile/Profile.component";
-import { CertificateReader } from "./src/form/CertificateReader.component";
+import { ProfileEditor } from "./src/profile-editor/ProfileEditor.component";
+import { CertificateReader } from "./src/certificate-reader/CertificateReader.component";
 import { Home } from "./src/home/Home.component";
 import { CertificateEditor } from "./src/certificate-editor/CertificateEditor.component";
 
@@ -18,8 +18,8 @@ export default function App() {
           component={Home}
         />
         <Stack.Screen
-          name="Profile"
-          component={Profile}
+          name="ProfileEditor"
+          component={ProfileEditor}
         />
         <Stack.Screen
           name="CertificateEditor"

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { Certificate } from "../model/certificate";
+import { Certificate } from "../models/certificate";
 
 
 export async function getCertificates() {
@@ -12,4 +12,9 @@ export async function saveCertificate(certificate: Certificate) {
   const certificates = await getCertificates();
   certificates.unshift(certificate);
   return AsyncStorage.setItem('certificates', JSON.stringify(certificates));
+}
+
+// For debugging use only
+async function deleteAllCertificates() {
+  return AsyncStorage.setItem('certificates', JSON.stringify([]));
 }
