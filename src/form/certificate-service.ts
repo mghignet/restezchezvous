@@ -1,7 +1,8 @@
-import { CertificateReason, User } from "../../App";
 import { PDFDocument, StandardFonts } from "pdf-lib";
 import { generateQrCode } from "./qr-code-service";
 import moment from "moment";
+import { User } from "src/model/user";
+import { CertificateReason } from "src/model/certificate-reason";
 
 export interface CertificateData {
   user: User;
@@ -29,7 +30,7 @@ export async function generateCertificateAsBase64(user: User, reason: Certificat
   }
 
   drawText(`${user.firstName} ${user.lastName}`, 123, 686);
-  drawText(user.birthday, 123, 661);
+  drawText(user.birthDate, 123, 661);
   drawText(user.birthLocation, 92, 638);
   drawText(`${user.address} ${user.zipCode} ${user.town}`, 134, 613);
 

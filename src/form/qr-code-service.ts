@@ -8,7 +8,7 @@ export async function generateQrCode(certificateData: CertificateData) {
     `Cree le ${creationDate}`,
     `Nom: ${user.lastName}`,
     `Prenom: ${user.firstName}`,
-    `Naissance: ${user.birthday} a ${user.birthLocation}`,
+    `Naissance: ${user.birthDate} a ${user.birthLocation}`,
     `Adresse: ${user.address} ${user.zipCode} ${user.town}`,
     `Sortie: ${reason.releaseDate} a ${reason.releaseHours}h${reason.releaseMinutes}`,
     `Motifs: ${reason.reasons.join("-")}`,
