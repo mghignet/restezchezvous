@@ -4,16 +4,13 @@ import {StyleSheet, Dimensions, View} from 'react-native';
 import Pdf from 'react-native-pdf';
 
 interface Props {
-    pdfFile: any;
+  pdfFile: any;
 }
 
 export const CertificateReader: React.FC<Props> = ({pdfFile}) => {
   return (
     <View>
-      <Pdf
-        source={pdfFile}
-        style={styles.pdf}
-      />
+      <Pdf source={pdfFile} style={styles.pdf} />
     </View>
   );
 };

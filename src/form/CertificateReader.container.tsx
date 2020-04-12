@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
 import {CertificateReader} from './CertificateReader.component';
-import { Reason, User } from "../../App";
+import { CertificateReason, User } from "../../App";
 import { generateCertificateAsBase64 } from "./certificate-service";
 
 interface Props {
   user: User,
-  reason: Reason,
+  reason: CertificateReason,
 };
 
 export const CertificateReaderContainer: React.FC<Props> = ({user, reason}) => {
@@ -22,7 +22,7 @@ export const CertificateReaderContainer: React.FC<Props> = ({user, reason}) => {
 
   return (
     <View>
-      {certificate && <CertificateReader pdfFile={certificate}></CertificateReader>}
+      {certificate && <CertificateReader pdfFile={certificate}/>}
     </View>
   );
 };
