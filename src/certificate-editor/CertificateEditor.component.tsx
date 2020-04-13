@@ -3,7 +3,7 @@ import {User} from '../models/user';
 import {RouteProp} from '@react-navigation/native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
-import {Button, ScrollView} from 'react-native';
+import {Button, ScrollView, Text, StyleSheet, View} from 'react-native';
 import {Certificate} from '../models/certificate';
 import {saveCertificate} from '../repositories/certificate.repository';
 import {CertificateReason} from '../models/certificate-reason';
@@ -54,11 +54,13 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
   };
 
   function hasReason(reason: ReleaseReason) {
-    return certificateReason.releaseReasons.includes(reason)
+    return certificateReason.releaseReasons.includes(reason);
   }
 
   function removeReason(reason: ReleaseReason) {
-    const newReasons = certificateReason.releaseReasons.filter((r) => r != reason);
+    const newReasons = certificateReason.releaseReasons.filter(
+      (r) => r != reason,
+    );
     setCertificateReason({...emptyReason, releaseReasons: newReasons});
   }
 
@@ -85,55 +87,55 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
+      <Text style={styles.name}>Créer une attestation</Text>
+      <Text>Choisissez une ou plusieurs raisons</Text>
       <ReleaseReasonToggle
-        label={'Je vais travailler'}
+        label={'Travail'}
         onChange={toggleReason(ReleaseReasons.TRAVAIL)}
         selected={hasReason(ReleaseReasons.TRAVAIL)}
       />
       <ReleaseReasonToggle
-        label={'Je vais acheter des produits de première nécessité'}
+        label={'Achats'}
         onChange={toggleReason(ReleaseReasons.COURSES)}
         selected={hasReason(ReleaseReasons.COURSES)}
       />
       <ReleaseReasonToggle
-        label={'Je me rends à une consultation médicale'}
+        label={'Consultation médicale'}
         onChange={toggleReason(ReleaseReasons.SANTE)}
         selected={hasReason(ReleaseReasons.SANTE)}
       />
       <ReleaseReasonToggle
-        label={
-          "Je me déplace pour motif familial (aider un proche, garde d'enfants...)"
-        }
+        label={'Motif familial'}
         onChange={toggleReason(ReleaseReasons.FAMILLE)}
         selected={hasReason(ReleaseReasons.FAMILLE)}
       />
       <ReleaseReasonToggle
-        label={
-          "Je m'aère l'esprit ou je promène mon chien autour de chez moi, pendant maximum une heure"
-        }
+        label={'Balade / Sport'}
         onChange={toggleReason(ReleaseReasons.SPORT)}
         selected={hasReason(ReleaseReasons.SPORT)}
       />
       <ReleaseReasonToggle
-        label={"J'ai une convocation judiciaire"}
+        label={'Convocation judiciaire'}
         onChange={toggleReason(ReleaseReasons.JUDICIAIRE)}
         selected={hasReason(ReleaseReasons.JUDICIAIRE)}
       />
       <ReleaseReasonToggle
-        label={"je participe à des mission d'intérêt général"}
+        label={"Mission d'intérêt général"}
         onChange={toggleReason(ReleaseReasons.MISSIONS)}
         selected={hasReason(ReleaseReasons.MISSIONS)}
       />
-      <Button
-        title={
-          certificateReason.releaseDate
-            ? formatDateAndTime(certificateReason.releaseDate)
-            : `Date de sortie`
-        }
-        onPress={showDatePicker}
-      />
+      <View style={styles.releaseDate}>
+        <View>
+          <Text style={styles.releaseDateText}>Date de sortie</Text>
+          <Text>Le {formatDateAndTime(certificateReason.releaseDate)}</Text>
+        </View>
+        <View style={styles.releaseDateButton}>
+          <Button title={'Modifier'} onPress={showDatePicker} />
+        </View>
+      </View>
       <DateTimePickerModal
+        date={certificateReason.releaseDate}
         isVisible={isDatePickerVisible}
         is24Hour={true} // turns on 24 hours on Android
         locale="fr_FR" // turns on 24 hours on iOS
@@ -143,14 +145,41 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
         headerTextIOS={'Date de sortie'}
         confirmTextIOS={'Confirmer'}
         cancelTextIOS={'Annuler'}
-        minuteInterval={5}
       />
-      <Button
-        title={'Créer mon attestation'}
-        onPress={() => {
-          buildCertificateAndReturn(certificateReason);
-        }}
-      />
+      <View style={styles.button}>
+        <Button
+          title={'Créer mon attestation'}
+          onPress={() => {
+            buildCertificateAndReturn(certificateReason);
+          }}
+        />
+      </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 24,
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  releaseDate: {
+    marginTop: 24,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  releaseDateText: {
+    fontSize: 16,
+  },
+  releaseDateButton: {
+    marginLeft: 12,
+  },
+  button: {
+    marginTop: 24,
+  },
+});

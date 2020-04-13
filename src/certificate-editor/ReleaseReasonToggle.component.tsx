@@ -11,6 +11,7 @@ export function ReleaseReasonToggle({label, selected, onChange}: Props) {
   return (
     <View style={styles.container}>
       <Switch
+        style={styles.switch}
         onValueChange={onChange}
         value={selected}
       />
@@ -21,13 +22,16 @@ export function ReleaseReasonToggle({label, selected, onChange}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
+    marginTop: 12,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
+  switch:{
+    transform: [{ scaleX: .8 }, { scaleY: .8 }]
+  },
   label: {
-    fontSize: 18,
-    marginLeft: 8,
+    fontSize: 16,
+    marginLeft: 12,
   }
 });
