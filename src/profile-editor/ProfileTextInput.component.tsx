@@ -40,11 +40,15 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     padding: 3,
+    paddingHorizontal: 10,
+    fontSize: 16,
     borderColor: '#DDD',
     borderWidth: 1,
+    backgroundColor: '#FFF',
   },
   title: {
     marginBottom: 2,
+    color: '#666',
   },
   hint: {
     color: '#CCC',

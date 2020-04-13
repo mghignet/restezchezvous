@@ -161,6 +161,7 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
+    backgroundColor: '#EEE',
   },
   name: {
     fontSize: 24,
