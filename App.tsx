@@ -18,9 +18,21 @@ export default function App() {
           component={Home}
           options={{title: '#RestezChezVous'}}
         />
-        <Stack.Screen name="ProfileEditor" component={ProfileEditor} />
-        <Stack.Screen name="CertificateEditor" component={CertificateEditor} />
-        <Stack.Screen name="CertificateReader" component={CertificateReader} />
+        <Stack.Screen
+          name="ProfileEditor"
+          component={ProfileEditor}
+          options={{title: 'Profil', headerTruncatedBackTitle: 'Retour'}}
+        />
+        <Stack.Screen
+          name="CertificateEditor"
+          component={CertificateEditor}
+          options={{title: 'Créer une attestation', headerTruncatedBackTitle: 'Retour'}}
+        />
+        <Stack.Screen
+          name="CertificateReader"
+          component={CertificateReader}
+          options={{title: 'Attestation', headerTruncatedBackTitle: 'Retour'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
