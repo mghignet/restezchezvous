@@ -6,6 +6,7 @@ import {ProfileEditor} from './src/profile-editor/ProfileEditor.component';
 import {CertificateReader} from './src/certificate-reader/CertificateReader.component';
 import {Home} from './src/home/Home.component';
 import {CertificateEditor} from './src/certificate-editor/CertificateEditor.component';
+import { Credits } from "./src/credits/Credits.component";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,11 @@ export default function App() {
           name="CertificateReader"
           component={CertificateReader}
           options={{title: 'Attestation', headerTruncatedBackTitle: 'Retour'}}
+        />
+        <Stack.Screen
+          name="Credits"
+          component={Credits}
+          options={{title: 'A propos', headerTruncatedBackTitle: 'Retour'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

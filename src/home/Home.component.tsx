@@ -1,5 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {
+  Text,
+  ScrollView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {getUser} from '../repositories/user.repository';
 import {User} from '../models/user';
 import {CertificateSummary} from './CertificateSummary.component';
@@ -36,40 +42,58 @@ export function Home({navigation}: Props) {
     setCurrentCertificate(certificate);
   }
 
+  function onCreditsSelected() {
+    navigation.navigate('Credits');
+  }
+
   return (
-    <ScrollView style={styles.container}>
-      <ProfileSummary
-        user={currentUser}
-        onProfileEditAction={() =>
-          navigation.navigate('ProfileEditor', {user: currentUser, onSave: onProfileSave})
-        }
-      />
-      {currentUser && (
-        <CertificateSummary
-          certificate={currentCertificate}
-          onCertificateCreateAction={() =>
-            navigation.navigate('CertificateEditor', {
+    <View style={styles.container}>
+      <ScrollView>
+        <ProfileSummary
+          user={currentUser}
+          onProfileEditAction={() =>
+            navigation.navigate('ProfileEditor', {
               user: currentUser,
-              onSave: onCertificateSave,
+              onSave: onProfileSave,
             })
           }
-          onCertificateSelected={(c) => () => {
-            navigation.navigate('CertificateReader', {certificate: c});
-          }}
         />
-      )}
-    </ScrollView>
+        {currentUser && (
+          <CertificateSummary
+            certificate={currentCertificate}
+            onCertificateCreateAction={() =>
+              navigation.navigate('CertificateEditor', {
+                user: currentUser,
+                onSave: onCertificateSave,
+              })
+            }
+            onCertificateSelected={(c) => () => {
+              navigation.navigate('CertificateReader', {certificate: c});
+            }}
+          />
+        )}
+      </ScrollView>
+      <View style={styles.credits}>
+        <TouchableOpacity onPress={onCreditsSelected}>
+          <Text style={styles.creditText}>A propos de cette application</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 0,
     backgroundColor: '#EEE',
+    display: 'flex',
+    flex: 1,
   },
-  profileSummary: {
-    padding: 20,
-    backgroundColor: '#DDD',
-    marginBottom: 20,
+  credits: {
+    marginBottom: 36,
+    marginRight: 24,
+    alignSelf: 'flex-end',
+  },
+  creditText: {
+    color: '#999',
   },
 });
