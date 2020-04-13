@@ -23,13 +23,13 @@ type NavigationProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Props'>;
 };
 
-const emptyReason: CertificateReason = {
-  releaseReasons: [],
-  releaseDate: new Date(),
-};
-
 export function CertificateEditor({route, navigation}: NavigationProps) {
   const {user, onSave} = route.params;
+
+  const emptyReason: CertificateReason = {
+    releaseReasons: [],
+    releaseDate: new Date(),
+  };
   const [certificateReason, setCertificateReason] = useState(emptyReason);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
