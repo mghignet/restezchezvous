@@ -23,18 +23,18 @@ type NavigationProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Props'>;
 };
 
-const emptyUser: User = {
-  firstName: '',
-  lastName: '',
-  birthDate: '',
-  birthLocation: '',
-  address: '',
-  zipCode: '',
-  town: '',
-};
-
 export function ProfileEditor({route, navigation}: NavigationProps) {
   const {onSave, user} = route.params;
+
+  const emptyUser: User = {
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    birthLocation: '',
+    address: '',
+    zipCode: '',
+    town: '',
+  };
   const [currentUser, setCurrentUser] = React.useState<User>(user || emptyUser);
 
   async function saveAndReturn(user: User) {
