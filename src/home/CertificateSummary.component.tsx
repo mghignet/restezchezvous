@@ -4,37 +4,30 @@ import {Certificate} from 'src/models/certificate';
 import {CertificateListItem} from './CertificateListItem.component';
 
 interface Props {
-  certificates: Certificate[];
+  certificate?: Certificate;
   onCertificateCreateAction: () => void;
   onCertificateSelected: (c: Certificate) => () => void;
 }
 
 export function CertificateSummary({
-  certificates,
+  certificate,
   onCertificateCreateAction,
   onCertificateSelected,
 }: Props) {
-  const certificateElements = certificates.map((c: Certificate) => {
-    return (
-      <CertificateListItem
-        key={`${c.creationDate}}`}
-        certificate={c}
-        onCertificateSelected={(c:Certificate) => onCertificateSelected(c)}
-      />
-    );
-  });
-
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>Mes attestations</Text>
-      {certificates.length == 0 && (
+      <Text style={styles.name}>Mon attestation</Text>
+      {certificate == null && (
         <>
-          <Text>
-            Vous n'avez aucune attestation en cours de validité.
-          </Text>
+          <Text>Vous n'avez aucune attestation en cours de validité.</Text>
         </>
       )}
-      {certificateElements}
+      {certificate != null && (
+        <CertificateListItem
+          certificate={certificate}
+          onCertificateSelected={(c: Certificate) => onCertificateSelected(c)}
+        />
+      )}
       <View style={styles.button}>
         <Button
           title={'Créer une attestation'}

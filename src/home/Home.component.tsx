@@ -4,7 +4,7 @@ import {getUser} from '../repositories/user.repository';
 import {User} from '../models/user';
 import {CertificateSummary} from './CertificateSummary.component';
 import {Certificate} from '../models/certificate';
-import {getCertificates} from '../repositories/certificate.repository';
+import {getCertificate} from '../repositories/certificate.repository';
 import {ProfileSummary} from './ProfileSummary.component';
 
 interface Props {
@@ -13,18 +13,16 @@ interface Props {
 
 export function Home({navigation}: Props) {
   const [currentUser, setCurrentUser] = React.useState<User>();
-  const [currentCertificates, setCurrentCertificates] = React.useState<
-    Certificate[]
-  >([]);
+  const [currentCertificate, setCurrentCertificate] = React.useState<
+    Certificate
+  >();
 
   React.useEffect(() => {
     async function retrieveCurrentUser() {
-      try {
-        const user = await getUser();
-        setCurrentUser(user);
-        const certificates = await getCertificates();
-        setCurrentCertificates(certificates);
-      } catch (e) {}
+      const user = await getUser();
+      setCurrentUser(user);
+      const certificate = await getCertificate();
+      setCurrentCertificate(certificate);
     }
 
     retrieveCurrentUser();
@@ -35,9 +33,7 @@ export function Home({navigation}: Props) {
   }
 
   function onCertificateSave(certificate: Certificate) {
-    const newCertificateList = [...currentCertificates];
-    newCertificateList.unshift(certificate);
-    setCurrentCertificates(newCertificateList);
+    setCurrentCertificate(certificate);
   }
 
   return (
@@ -50,7 +46,7 @@ export function Home({navigation}: Props) {
       />
       {currentUser && (
         <CertificateSummary
-          certificates={currentCertificates}
+          certificate={currentCertificate}
           onCertificateCreateAction={() =>
             navigation.navigate('CertificateEditor', {
               user: currentUser,

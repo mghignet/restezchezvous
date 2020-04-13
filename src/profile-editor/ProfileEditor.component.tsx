@@ -127,6 +127,7 @@ export function ProfileEditor({route, navigation}: NavigationProps) {
 const styles = StyleSheet.create({
   container: {
     padding: 24,
+    backgroundColor: '#EEE',
   },
   button: {
     marginTop: 20,

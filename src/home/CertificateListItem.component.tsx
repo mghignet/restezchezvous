@@ -20,7 +20,7 @@ export function CertificateListItem({
         style={styles.container}
         onPress={onCertificateSelected(certificate)}>
         <Text>
-          {isCertificateExpired && "(Expiré)"} {certificate.firstName} {certificate.lastName}
+          {isCertificateExpired && "(Expiré) "}{certificate.firstName} {certificate.lastName}
         </Text>
         <Text>
           {certificate.address} {certificate.zipCode} {certificate.town}
