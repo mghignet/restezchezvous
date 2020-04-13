@@ -30,7 +30,7 @@ export function CertificateSummary({
       )}
       <View style={styles.button}>
         <Button
-          title={'Créer une attestation'}
+          title={'Créer une nouvelle attestation'}
           onPress={onCertificateCreateAction}
         />
       </View>

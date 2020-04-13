@@ -10,3 +10,8 @@ export async function getUser() {
   // @ts-ignore
   return JSON.parse(user);
 }
+
+// For debugging use only
+async function deleteUser() {
+  return AsyncStorage.removeItem('user');
+}

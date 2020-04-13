@@ -6,12 +6,13 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {User} from '../models/user';
-import {getUser, saveUser} from '../repositories/user.repository';
+import {saveUser} from '../repositories/user.repository';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack/lib/typescript/src/types';
 import {ProfileTextInput} from './ProfileTextInput.component';
 
 interface Props {
+  user: User;
   onSave: Function;
 }
 
@@ -31,30 +32,10 @@ const emptyUser: User = {
   zipCode: '',
   town: '',
 };
-const dummyUser: User = {
-  firstName: 'Jean',
-  lastName: 'Valjean',
-  birthDate: '18/12/1990',
-  birthLocation: 'Sainte-Catherine',
-  address: '46 Rue des stations',
-  zipCode: '59800',
-  town: 'Lille',
-};
 
 export function ProfileEditor({route, navigation}: NavigationProps) {
-  const {onSave} = route.params;
-  const [currentUser, setCurrentUser] = React.useState<User>(emptyUser);
-
-  React.useEffect(() => {
-    async function retrieveCurrentUser() {
-      try {
-        const user = await getUser();
-        setCurrentUser(user);
-      } catch (e) {}
-    }
-
-    retrieveCurrentUser();
-  }, []);
+  const {onSave, user} = route.params;
+  const [currentUser, setCurrentUser] = React.useState<User>(user || emptyUser);
 
   async function saveAndReturn(user: User) {
     await saveUser(user);

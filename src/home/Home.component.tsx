@@ -41,7 +41,7 @@ export function Home({navigation}: Props) {
       <ProfileSummary
         user={currentUser}
         onProfileEditAction={() =>
-          navigation.navigate('ProfileEditor', {onSave: onProfileSave})
+          navigation.navigate('ProfileEditor', {user: currentUser, onSave: onProfileSave})
         }
       />
       {currentUser && (
