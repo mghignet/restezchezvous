@@ -5,7 +5,7 @@ const qrImage = require("qr-image");
 
 export async function generateQrCode(certificate: Certificate) {
   const qrText = [
-    `Cree le ${certificate.creationDate}`,
+    `Cree le ${formatDateAndTime(certificate.creationDate)}`,
     `Nom: ${certificate.lastName}`,
     `Prenom: ${certificate.firstName}`,
     `Naissance: ${certificate.birthDate} a ${certificate.birthLocation}`,
