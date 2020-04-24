@@ -1,11 +1,17 @@
 import React from 'react';
 import {User} from 'src/models/user';
-import {View, Text, StyleSheet, Button, ImageBackground} from 'react-native';
+import {Platform, View, Text, StyleSheet, Button, ImageBackground} from 'react-native';
 
 interface Props {
   user?: User;
   onProfileEditAction: () => void;
 }
+
+const buttonColor = Platform.select({
+  ios: 'white',
+  android: '#57043b',
+  default: '',
+})
 
 export function ProfileSummary({user, onProfileEditAction}: Props) {
   return (
@@ -40,7 +46,7 @@ export function ProfileSummary({user, onProfileEditAction}: Props) {
         )}
         <View style={styles.button}>
           <Button
-            color={"white"}
+            color={buttonColor}
             title={user ? 'Modifier mon profil' : 'Je crée mon profil'}
             onPress={onProfileEditAction}
           />
