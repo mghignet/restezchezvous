@@ -14,7 +14,7 @@ describe("isExpired", () => {
     expect(isExpired(expiredCertificate)).toBe(true);
   });
 
-  it("should expire after one hour when reason is SPORT only", () => {
+  it("should expire after one hour when reason is SPORT_ANIMAUX only", () => {
 
     const sixtyOneMinutesAgo = new Date("2020-01-01T16:59:00.000Z");
     const fiftyNineMinutesAgo = new Date("2020-01-01T17:01:00.000Z");
@@ -25,9 +25,9 @@ describe("isExpired", () => {
       // @ts-ignore
       .mockImplementation(() => now);
 
-    const expiredCertificate = buildCertificate(sixtyOneMinutesAgo, [ReleaseReasons.SPORT]);
+    const expiredCertificate = buildCertificate(sixtyOneMinutesAgo, [ReleaseReasons.SPORT_ANIMAUX]);
     expect(isExpired(expiredCertificate)).toBe(true);
-    const validCertificate = buildCertificate(fiftyNineMinutesAgo, [ReleaseReasons.SPORT]);
+    const validCertificate = buildCertificate(fiftyNineMinutesAgo, [ReleaseReasons.SPORT_ANIMAUX]);
     expect(isExpired(validCertificate)).toBe(false);
   });
 
@@ -41,11 +41,11 @@ describe("isExpired", () => {
       // @ts-ignore
       .mockImplementation(() => now);
 
-    const expiredCertificate = buildCertificate(futureDate, [ReleaseReasons.SPORT]);
+    const expiredCertificate = buildCertificate(futureDate, [ReleaseReasons.SPORT_ANIMAUX]);
     expect(isExpired(expiredCertificate)).toBe(false);
   });
 
-  it("should expire at the end of the day when reasons include COURSE, SANTE, FAMILLE, JUDICIAIRE but not TRAVAIL or MISSIONS", () => {
+  it("should expire at the end of the day when reasons include ACHATS, SANTE, FAMILLE, HANDICAP, CONVOCATION, ENFANTS but not TRAVAIL or MISSIONS", () => {
 
     const todayDate = new Date("2020-01-02T14:00:00.000Z");
     const yesterdayDate = new Date("2020-01-01T17:00:00.000Z");
@@ -56,9 +56,9 @@ describe("isExpired", () => {
       // @ts-ignore
       .mockImplementation(() => now);
 
-    const expiredCertificate = buildCertificate(yesterdayDate, [ReleaseReasons.SPORT, ReleaseReasons.COURSES]);
+    const expiredCertificate = buildCertificate(yesterdayDate, [ReleaseReasons.SPORT_ANIMAUX, ReleaseReasons.ACHATS]);
     expect(isExpired(expiredCertificate)).toBe(true);
-    const validCertificate = buildCertificate(todayDate, [ReleaseReasons.SPORT, ReleaseReasons.COURSES]);
+    const validCertificate = buildCertificate(todayDate, [ReleaseReasons.SPORT_ANIMAUX, ReleaseReasons.ACHATS]);
     expect(isExpired(validCertificate)).toBe(false);
   });
 
@@ -73,9 +73,9 @@ describe("isExpired", () => {
       // @ts-ignore
       .mockImplementation(() => now);
 
-    const expiredCertificate = buildCertificate(before24HoursEarlier, [ReleaseReasons.COURSES, ReleaseReasons.TRAVAIL]);
+    const expiredCertificate = buildCertificate(before24HoursEarlier, [ReleaseReasons.ACHATS, ReleaseReasons.TRAVAIL]);
     expect(isExpired(expiredCertificate)).toBe(true);
-    const validCertificate = buildCertificate(after24HoursEarlier, [ReleaseReasons.COURSES, ReleaseReasons.TRAVAIL]);
+    const validCertificate = buildCertificate(after24HoursEarlier, [ReleaseReasons.ACHATS, ReleaseReasons.TRAVAIL]);
     expect(isExpired(validCertificate)).toBe(false);
   });
 

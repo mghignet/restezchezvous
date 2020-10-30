@@ -1,12 +1,12 @@
 import moment from "moment";
 
 export const DATE_FORMAT = "DD/MM/YYYY";
-export const HOURS_FORMAT = "HH";
+export const TIME_FORMAT = "HH:mm";
 export const MINUTES_FORMAT = "mm";
 
 export function formatDateAndTime(date: Date) {
   const mtDate = moment(date);
-  return `${mtDate.format(DATE_FORMAT)} à ${mtDate.format(HOURS_FORMAT)}h${mtDate.format(MINUTES_FORMAT)}`;
+  return `${mtDate.format(DATE_FORMAT)} à ${mtDate.format(TIME_FORMAT)}h${mtDate.format(MINUTES_FORMAT)}`;
 }
 
 export function formatDateOnly(date: Date) {
@@ -14,12 +14,7 @@ export function formatDateOnly(date: Date) {
   return `${mtDate.format(DATE_FORMAT)}`;
 }
 
-export function formatHoursOnly(date: Date) {
+export function formatTimeOnly(date: Date) {
   const mtDate = moment(date);
-  return `${mtDate.format(HOURS_FORMAT)}`;
-}
-
-export function formatMinutesOnly(date: Date) {
-  const mtDate = moment(date);
-  return `${mtDate.format(MINUTES_FORMAT)}`;
+  return `${mtDate.format(TIME_FORMAT)}`;
 }

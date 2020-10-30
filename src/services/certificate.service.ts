@@ -3,7 +3,7 @@ import {generateQrCode} from './qrcode.service';
 import {
   formatDateAndTime,
   formatDateOnly,
-  formatHoursOnly,
+  formatTimeOnly,
   formatMinutesOnly,
 } from './date.service';
 import {ReleaseReasons} from '../models/release-reason';
@@ -24,10 +24,12 @@ export function isExpired(certificate: Certificate) {
 
   if (
     [
-      ReleaseReasons.COURSES,
+      ReleaseReasons.ACHATS,
       ReleaseReasons.SANTE,
       ReleaseReasons.FAMILLE,
-      ReleaseReasons.JUDICIAIRE,
+      ReleaseReasons.HANDICAP,
+      ReleaseReasons.CONVOCATION,
+      ReleaseReasons.ENFANTS,
     ].some((reason) => certificate.releaseReasons.includes(reason))
   ) {
     return !moment(certificate.releaseDate).isSame(moment(), 'day');
@@ -35,7 +37,7 @@ export function isExpired(certificate: Certificate) {
 
   if (
     certificate.releaseReasons.length === 1 &&
-    certificate.releaseReasons.includes(ReleaseReasons.SPORT)
+    certificate.releaseReasons.includes(ReleaseReasons.SPORT_ANIMAUX)
   ) {
     return moment(certificate.releaseDate).isBefore(moment().subtract(60, 'm'));
   }
@@ -52,48 +54,49 @@ export async function generateCertificateAsBase64(certificate: Certificate) {
     page1.drawText(text, {x, y, size, font});
   }
 
-  drawText(`${certificate.firstName} ${certificate.lastName}`, 123, 686);
-  drawText(certificate.birthDate, 123, 661);
-  drawText(certificate.birthLocation, 92, 638);
+  drawText(`${certificate.firstName} ${certificate.lastName}`, 119, 696);
+  drawText(certificate.birthDate, 119, 674);
+  drawText(certificate.birthLocation, 297, 674);
   drawText(
     `${certificate.address} ${certificate.zipCode} ${certificate.town}`,
-    134,
-    613,
+    133,
+    652,
   );
 
   if (certificate.releaseReasons.includes(ReleaseReasons.TRAVAIL))
-    drawText('x', 77, 527, 19);
-  if (certificate.releaseReasons.includes(ReleaseReasons.COURSES))
-    drawText('x', 77, 478, 19);
+    drawText('x', 84, 578, 18);
+  if (certificate.releaseReasons.includes(ReleaseReasons.ACHATS))
+    drawText('x', 84, 533, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.SANTE))
-    drawText('x', 77, 436, 19);
+    drawText('x', 84, 477, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.FAMILLE))
-    drawText('x', 77, 400, 19);
-  if (certificate.releaseReasons.includes(ReleaseReasons.SPORT))
-    drawText('x', 77, 345, 19);
-  if (certificate.releaseReasons.includes(ReleaseReasons.JUDICIAIRE))
-    drawText('x', 77, 298, 19);
+    drawText('x', 84, 435, 18);
+  if (certificate.releaseReasons.includes(ReleaseReasons.HANDICAP))
+    drawText('x', 84, 396, 18);
+  if (certificate.releaseReasons.includes(ReleaseReasons.SPORT_ANIMAUX))
+    drawText('x', 84, 358, 18);
+  if (certificate.releaseReasons.includes(ReleaseReasons.CONVOCATION))
+    drawText('x', 84, 295, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.MISSIONS))
-    drawText('x', 77, 260, 19);
+    drawText('x', 84, 255, 18);
+  if (certificate.releaseReasons.includes(ReleaseReasons.ENFANTS))
+    drawText('x', 84, 211, 18);
 
-  drawText(certificate.town, 111, 226, 11);
+  drawText(certificate.town, 105, 177, 11);
 
   if (certificate.releaseReasons.length > 0) {
-    drawText(formatDateOnly(certificate.releaseDate), 92, 200);
-    drawText(formatHoursOnly(certificate.releaseDate), 200, 201);
-    drawText(formatMinutesOnly(certificate.releaseDate), 220, 201);
+    drawText(formatDateOnly(certificate.releaseDate), 91, 153, 11);
+    drawText(formatTimeOnly(certificate.releaseDate), 264, 153, 11);
   }
 
-  drawText('Date de création:', 464, 150, 7);
-  drawText(formatDateAndTime(certificate.creationDate), 455, 144, 7);
   const generatedQrCode = await generateQrCode(certificate);
   const qrImage = await pdfDoc.embedPng(generatedQrCode);
 
   page1.drawImage(qrImage, {
-    x: page1.getWidth() - 170,
-    y: 155,
-    width: 100,
-    height: 100,
+    x: page1.getWidth() - 156,
+    y: 100,
+    width: 92,
+    height: 92,
   });
 
   pdfDoc.addPage();

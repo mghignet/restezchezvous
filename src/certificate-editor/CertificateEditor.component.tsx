@@ -97,11 +97,11 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
       />
       <ReleaseReasonToggle
         label={'Achats'}
-        onChange={toggleReason(ReleaseReasons.COURSES)}
-        selected={hasReason(ReleaseReasons.COURSES)}
+        onChange={toggleReason(ReleaseReasons.ACHATS)}
+        selected={hasReason(ReleaseReasons.ACHATS)}
       />
       <ReleaseReasonToggle
-        label={'Consultation médicale'}
+        label={'Soins'}
         onChange={toggleReason(ReleaseReasons.SANTE)}
         selected={hasReason(ReleaseReasons.SANTE)}
       />
@@ -111,19 +111,29 @@ export function CertificateEditor({route, navigation}: NavigationProps) {
         selected={hasReason(ReleaseReasons.FAMILLE)}
       />
       <ReleaseReasonToggle
+        label={'Aides aux personnes handicapées'}
+        onChange={toggleReason(ReleaseReasons.HANDICAP)}
+        selected={hasReason(ReleaseReasons.HANDICAP)}
+      />
+      <ReleaseReasonToggle
         label={'Balade / Sport'}
-        onChange={toggleReason(ReleaseReasons.SPORT)}
-        selected={hasReason(ReleaseReasons.SPORT)}
+        onChange={toggleReason(ReleaseReasons.SPORT_ANIMAUX)}
+        selected={hasReason(ReleaseReasons.SPORT_ANIMAUX)}
       />
       <ReleaseReasonToggle
         label={'Convocation judiciaire'}
-        onChange={toggleReason(ReleaseReasons.JUDICIAIRE)}
-        selected={hasReason(ReleaseReasons.JUDICIAIRE)}
+        onChange={toggleReason(ReleaseReasons.CONVOCATION)}
+        selected={hasReason(ReleaseReasons.CONVOCATION)}
       />
       <ReleaseReasonToggle
         label={"Mission d'intérêt général"}
         onChange={toggleReason(ReleaseReasons.MISSIONS)}
         selected={hasReason(ReleaseReasons.MISSIONS)}
+      />
+      <ReleaseReasonToggle
+        label={"École des enfants"}
+        onChange={toggleReason(ReleaseReasons.ENFANTS)}
+        selected={hasReason(ReleaseReasons.ENFANTS)}
       />
       <View style={styles.releaseDate}>
         <View>

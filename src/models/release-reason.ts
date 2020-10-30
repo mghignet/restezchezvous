@@ -1,18 +1,22 @@
 export enum ReleaseReasons {
   TRAVAIL = 'travail',
-  COURSES = 'courses',
+  ACHATS = 'achats',
   SANTE = 'sante',
   FAMILLE = 'famille',
-  SPORT = 'sport',
-  JUDICIAIRE = 'judiciaire',
+  HANDICAP = 'handicap',
+  SPORT_ANIMAUX = 'sport_animaux',
+  CONVOCATION = 'convocation',
   MISSIONS = 'missions',
+  ENFANTS = 'enfants',
 }
 
 export type ReleaseReason =
   | ReleaseReasons.TRAVAIL
-  | ReleaseReasons.COURSES
+  | ReleaseReasons.ACHATS
   | ReleaseReasons.SANTE
   | ReleaseReasons.FAMILLE
-  | ReleaseReasons.SPORT
-  | ReleaseReasons.JUDICIAIRE
-  | ReleaseReasons.MISSIONS;
+  | ReleaseReasons.HANDICAP
+  | ReleaseReasons.SPORT_ANIMAUX
+  | ReleaseReasons.CONVOCATION
+  | ReleaseReasons.MISSIONS
+  | ReleaseReasons.ENFANTS;

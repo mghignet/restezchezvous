@@ -12,7 +12,7 @@ export function Credits() {
       </Text>
       <Text style={styles.textBlock}>
         Elle reproduit à l'identique l'attestation demandée par les forces de
-        l'ordre (version en vigueur à la date du 13 Avril 2020), ainsi que son QR Code.
+        l'ordre (version en vigueur à la date du 30 Octobre 2020), ainsi que son QR Code.
       </Text>
       <Text style={styles.textBlock}>
         Faites en bon usage, et surtout, utilisez-la le moins possible ! <Text style={styles.boldText}>#restezChezVous</Text>
