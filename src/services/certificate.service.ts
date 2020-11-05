@@ -64,23 +64,23 @@ export async function generateCertificateAsBase64(certificate: Certificate) {
   );
 
   if (certificate.releaseReasons.includes(ReleaseReasons.TRAVAIL))
-    drawText('x', 84, 578, 18);
+    drawText('x', 78, 578, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.ACHATS))
-    drawText('x', 84, 533, 18);
+    drawText('x', 78, 533, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.SANTE))
-    drawText('x', 84, 477, 18);
+    drawText('x', 78, 477, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.FAMILLE))
-    drawText('x', 84, 435, 18);
+    drawText('x', 78, 435, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.HANDICAP))
-    drawText('x', 84, 396, 18);
+    drawText('x', 78, 396, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.SPORT_ANIMAUX))
-    drawText('x', 84, 358, 18);
+    drawText('x', 78, 358, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.CONVOCATION))
-    drawText('x', 84, 295, 18);
+    drawText('x', 78, 295, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.MISSIONS))
-    drawText('x', 84, 255, 18);
+    drawText('x', 78, 255, 18);
   if (certificate.releaseReasons.includes(ReleaseReasons.ENFANTS))
-    drawText('x', 84, 211, 18);
+    drawText('x', 78, 211, 18);
 
   drawText(certificate.town, 105, 177, 11);
 
