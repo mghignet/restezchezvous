@@ -31,7 +31,7 @@
     "react": "16.11.0",
     "react-native": "0.63.3",
     "react-native-gesture-handler": "1.6.1",
-    "react-native-keyboard-aware-scroll-view": "0.9.1",
+    "react-native-keyboard-aware-scroll-view": "0.9.3",
     "react-native-modal-datetime-picker": "8.5.4",
     "react-native-pdf": "^6.1.1",
     "react-native-reanimated": "1.8.0",
